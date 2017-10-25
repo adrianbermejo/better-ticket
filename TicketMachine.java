@@ -52,9 +52,11 @@ public class TicketMachine
     public void insertMoney(int amount)
     {
         if(amount > 0) {
+             
             balance = balance + amount;
         }
         else {
+            
             System.out.println("Use a positive amount rather than: " +
                                amount);
         }
@@ -99,4 +101,19 @@ public class TicketMachine
         balance = 0;
         return amountToRefund;
     }
+    
+    /**
+     * vacia el contador total
+     */
+    public int emptyMachine(){
+       int sacartodoeldinero;
+       sacartodoeldinero = total + balance;
+       total = 0;
+       balance = 0;
+       return sacartodoeldinero;
+       
+       
+    }
+    
+    
 }
