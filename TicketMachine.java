@@ -107,12 +107,17 @@ public class TicketMachine
      */
     public int emptyMachine(){
        int sacartodoeldinero;
-       sacartodoeldinero = total + balance;
+       if (balance == 0){
+       sacartodoeldinero = total ;
        total = 0;
-       balance = 0;
-       return sacartodoeldinero;
+ 
        
-       
+    }
+       else {
+       System.out.println("hay una operacion en curso (dinero en balance)");
+         sacartodoeldinero = -1 ;
+        }
+        return sacartodoeldinero;
     }
     
     
