@@ -17,17 +17,22 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
-
+    // ticket regalo diferencia de un ticket normal
+    private boolean regalo;
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(int cost,boolean premio)
     {
         price = cost;
         balance = 0;
         total = 0;
+        regalo = premio;
+      
+      
+        
     }
-
+    
     /**
      * @Return The price of a ticket.
      */
@@ -83,11 +88,40 @@ public class TicketMachine
             // Reduce the balance by the prince.
             balance = balance - price;
         }
+      
+        else if (balance >= price & regalo == true){
+             // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + price + " cents.");
+            System.out.println("##################");
+            
+
+            // Update the total collected with the price.
+            
+            // Reduce the balance by the prince.
+            balance = balance - price; // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + price + " cents.");
+            System.out.println("##################");
+            System.out.println();
+
+            // Update the total collected with the price.
+            total = total + price;
+            // Reduce the balance by the prince.
+            balance = balance - price;
+            
+                    
+        }
+    
         else {
             System.out.println("You must insert at least: " +
                                (price - balance) + " more cents.");
-                    
         }
+    
     }
 
     /**
@@ -112,11 +146,11 @@ public class TicketMachine
        total = 0;
  
        
-    }
+       }
        else {
        System.out.println("hay una operacion en curso (dinero en balance)");
          sacartodoeldinero = -1 ;
-        }
+       }
         return sacartodoeldinero;
     }
     
