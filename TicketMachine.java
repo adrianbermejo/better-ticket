@@ -17,20 +17,20 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
-    // ticket regalo diferencia de un ticket normal
+    // Ticket regalo diferencia de un ticket normal
     private boolean regalo;
+    //Numero maximo de ticket vendidos
+    private int billeteventa;
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost,boolean premio)
+    public TicketMachine(int cost,boolean premio,int bmaxima )
     {
         price = cost;
         balance = 0;
         total = 0;
         regalo = premio;
-      
-      
-        
+        billeteventa = bmaxima;
     }
     
     /**
@@ -54,19 +54,19 @@ public class TicketMachine
      * Receive an amount of money from a customer.
      * Check that the amount is sensible.
      */
-    public void insertMoney(int amount)
+     public void insertMoney(int amount)
     {
-        if(amount > 0) {
-             
+        if(amount > 0 & billeteventa > 0) {
             balance = balance + amount;
         }
+        else if(amount > 0 & billeteventa == 0){
+            System.out.println("lo sentimos esta maquina no tiene mas billetes");
+        }
         else {
-            
             System.out.println("Use a positive amount rather than: " +
-                               amount);
+                amount);
         }
     }
-
     /**
      * Print a ticket if enough money has been inserted, and
      * reduce the current balance by the ticket price. Print
@@ -74,7 +74,7 @@ public class TicketMachine
      */
     public void printTicket()
     {
-        if(balance >= price) {
+        if(balance >= price & regalo == false) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -87,6 +87,7 @@ public class TicketMachine
             total = total + price;
             // Reduce the balance by the prince.
             balance = balance - price;
+            billeteventa = billeteventa -1;
         }
       
         else if (balance >= price & regalo == true){
@@ -96,12 +97,12 @@ public class TicketMachine
             System.out.println("# Ticket");
             System.out.println("# " + price + " cents.");
             System.out.println("##################");
-            
+            System.out.println();
+
 
             // Update the total collected with the price.
             
             // Reduce the balance by the prince.
-            balance = balance - price; // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
             System.out.println("# Ticket");
@@ -113,7 +114,7 @@ public class TicketMachine
             total = total + price;
             // Reduce the balance by the prince.
             balance = balance - price;
-            
+            billeteventa = billeteventa -1;
                     
         }
     
